@@ -4,21 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Treatment;
+use App\Models\Client;
 
-class Client extends Model
+class Treatment extends Model
 {
     use HasFactory;
-
-  protected $guarded = [
+    protected $guarded = [
     'id',
     'created_at',
     'updated_at',
+
   ];
-    public function treatments()
+
+
+    public function client()
     {
-        return $this->hasMany(Treatment::class);
+        return $this->belongsTo(Client::class);
     }
+
+
 
 
 }

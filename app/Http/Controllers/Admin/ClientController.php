@@ -7,19 +7,20 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Client; //Elquentエロクアント
 use Illuminate\Support\Facades\DB; //QueryBuilderクエリビルダ
+use App\Models\Treatment;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
 
     public function __construct()
     {
         $this->middleware('auth:admin');
+
+
+
+
+
     }
 
 
@@ -87,37 +88,22 @@ class ClientController extends Controller
         return redirect()->route('admin.client.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
           $client = Client::find($id);
         return view('admin.client.show', compact('client'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
       $client = Client::find($id);
         return view('admin.client.edit', compact('client'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function update(Request $request, $id)
     {
         // バリデーション
@@ -140,12 +126,7 @@ class ClientController extends Controller
         return redirect()->route('admin.client.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //
