@@ -31,18 +31,17 @@ class TreatmentController extends Controller
     {
         // 指定したカラムのみ取得（注意：IDは必ず含める）
         $treatments = Treatment::with('client:id,client_name')->get();
-        dd($treatments);
+
         // return view('admin.treatment.index',
         // compact('treatments'));
 
     }
 
 
-    public function create()
+    public function create(Client $client)
     {
-
+        return view('admin.treatment.create');
     }
-
 
     public function store(Request $request)
     {
@@ -51,6 +50,7 @@ class TreatmentController extends Controller
             'item' => 'required | max:191',
             'content' => 'required | max:191',
             'point' => 'required | max:191',
+            'client_id' =>'required'
 
         ]);
         // バリデーション:エラー

@@ -20,6 +20,9 @@ return new class extends Migration
             $table->foreignId('client_id')
             ->constrained();
             $table->timestamps();
+            $table->string('item');
+            $table->string('content');
+            $table->string('point');
 
         });
     }

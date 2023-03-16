@@ -23,6 +23,8 @@ Route::resource('schedule', ScheduleController::class);
 Route::resource('hospital', HospitalController::class);
 Route::resource('carestation', CarestationController::class);
 
+Route::resource('{client}/treatment', TreatmentController::class);
+
 Route::get('/', function () {
     return view('user.welcome');
 });
