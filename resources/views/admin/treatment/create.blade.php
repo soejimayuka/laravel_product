@@ -25,7 +25,7 @@
               <input class="border py-2 px-3 text-grey-darkest" type="text" name="point" id="point">
             </div>
 
-            <input type="text" name="client_id" id="client_id" value="{{$client -> id}}">
+
             <button type=" submit" class="w-full py-3 mt-6 font-medium tracking-widest text-black uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">登録</button>
           </form>
         </div>

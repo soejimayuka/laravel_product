@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\HospitalController;
+use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::resource('client', ClientController::class)
 ->middleware('auth:admin');
 
 Route::resource('hospital', HospitalController::class)
+->middleware('auth:admin');
+
+
+Route::resource('schedule', ScheduleController::class)
 ->middleware('auth:admin');
 
 Route::resource('treatment', TreatmentController::class)

@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\CarestationController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
