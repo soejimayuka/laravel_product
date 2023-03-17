@@ -17,16 +17,16 @@
             {{ __('Dashboard') }}
           </x-nav-link>
           <x-nav-link :href="route('admin.schedule.index')" :active="request()->routeIs('admin.schedule.index')">
-            {{ __('案件一覧') }}
+            案件一覧
           </x-nav-link>
           <x-nav-link :href="route('admin.client.index')" :active="request()->routeIs('admin.client.index')">
-            {{ __('患者管理') }}
-          </x-nav-link>
-          <x-nav-link :href="route('admin.treatment.index')" :active="request()->routeIs('admin.treatment.index')">
-            {{ __('処置一覧（仮）') }}
+            患者管理
           </x-nav-link>
           <x-nav-link :href="route('admin.hospital.index')" :active="request()->routeIs('admin.hospital.index')">
-            {{ __('病院管理') }}
+            病院管理
+          </x-nav-link>
+          <x-nav-link :href="route('admin.carestation.index')" :active="request()->routeIs('admin.carestation.index')">
+            ケアマネ管理
           </x-nav-link>
         </div>
 
@@ -83,22 +83,7 @@
     </div>
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('admin.schedule.index')" :active="request()->routeIs('admin.schedule.index')">
-        {{ __('案件一覧') }}
-      </x-responsive-nav-link>
-    </div>
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('admin.client.index')" :active="request()->routeIs('admin.client.index')">
-        {{ __('患者管理') }}
-      </x-responsive-nav-link>
-    </div>
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('admin.treatment.index')" :active="request()->routeIs('admin.treatment.index')">
-        {{ __('処置一覧（仮）') }}
-      </x-responsive-nav-link>
-    </div>
-    <div class="pt-2 pb-3 space-y-1">
-      <x-responsive-nav-link :href="route('admin.hospital.index')" :active="request()->routeIs('admin.hospital.index')">
-        {{ __('病院管理') }}
+        {{ __('案件') }}
       </x-responsive-nav-link>
     </div>
 

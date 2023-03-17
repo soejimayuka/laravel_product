@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\HospitalController;
 use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\CarestationController;
 use App\Http\Controllers\Admin\TreatmentController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::get('/', function () {
     return view('admin.welcome');
 });
@@ -42,7 +44,10 @@ Route::resource('hospital', HospitalController::class)
 Route::resource('schedule', ScheduleController::class)
 ->middleware('auth:admin');
 
-Route::resource('treatment', TreatmentController::class)
+Route::resource('carestation', CarestationController::class)
+->middleware('auth:admin');
+
+Route::resource('client/{client}/treatment', TreatmentController::class)
 ->middleware('auth:admin');
 
 

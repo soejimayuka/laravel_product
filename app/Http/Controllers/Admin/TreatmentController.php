@@ -37,10 +37,10 @@ class TreatmentController extends Controller
     public function create(Client $client)
     {
 
-        return view('admin.treatment.create');
+        return view('admin.treatment.create', compact('client'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Client $client)
     {
 
 
@@ -61,14 +61,13 @@ class TreatmentController extends Controller
 
         $treatment = new Treatment;
 
-        $treatment-> client_id = $request->client_id;
+        $treatment-> client_id = $client -> id;
         $treatment->item = $request->item;
         $treatment->content = $request->content;
         $treatment->point = $request->point;
-        dd($treatment);
         $treatment->save();
 
-        return redirect()->route('admin.treatment.index');
+        return redirect()->route('admin.treatment.index',$client->id);
 
 
         // // create()は最初から用意されている関数

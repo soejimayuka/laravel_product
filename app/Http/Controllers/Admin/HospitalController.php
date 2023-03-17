@@ -17,8 +17,7 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        // $hospitals = Hospital::getAllOrderByUpdated_at();
-        // return view('admin.hospital.index',compact('hospitals'));
+
         $hospitals = Hospital::select('id','hospital_name','address', 'tel', 'fax' ,'created_at')->get();
         return view('admin.hospital.index',
         compact('hospitals'));
@@ -45,7 +44,9 @@ class HospitalController extends Controller
         // バリデーション
         $validator = Validator::make($request->all(), [
             'hospital_name' => 'required | max:191',
-            'description' => 'required',
+            'address' => 'required',
+            'tel' => 'required',
+            'fax' => 'required',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -57,7 +58,7 @@ class HospitalController extends Controller
         // create()は最初から用意されている関数
         // 戻り値は挿入されたレコードの情報
         $result = Hospital::create($request->all());
-        // ルーティング「index」にリクエスト送信（一覧ページに移動）
+        // ルーティングにリクエスト送信（一覧ページに移動）
         return redirect()->route('admin.hospital.index');
     }
 
@@ -97,7 +98,9 @@ class HospitalController extends Controller
         //バリデーション
         $validator = Validator::make($request->all(), [
             'hospital_name' => 'required | max:191',
-            'description' => 'required',
+            'address' => 'required',
+            'tel' => 'required',
+            'fax' => 'required',
         ]);
         //バリデーション:エラー
         if ($validator->fails()) {
