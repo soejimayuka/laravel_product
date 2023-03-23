@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('client_id')->constrained();
-            $table->string('schedule_name');
+            $table->string('content');
             $table->timestamp('date')->comment('旅行日');
             $table->timestamps();
         });

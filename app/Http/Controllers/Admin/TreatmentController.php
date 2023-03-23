@@ -6,25 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request; //インスタンスクラスを読み込み
 use Validator;
 use App\Models\Treatment; //Elquentエロクアント
-use Illuminate\Support\Facades\DB; //QueryBuilderクエリビルダ
 use App\Models\Client;
 
 class TreatmentController extends Controller
 {
 
-
-
     public function __construct()
     {
         $this->middleware('auth:admin');
-
     }
-
 
 
     public function index()
     {
-
         // 指定したカラムのみ取得（注意：IDは必ず含める）
         $treatments = Treatment::with('client:id,client_name')->get();
         // dd($treatments);
@@ -39,6 +33,8 @@ class TreatmentController extends Controller
 
         return view('admin.treatment.create', compact('client'));
     }
+
+
 
     public function store(Request $request, Client $client)
     {

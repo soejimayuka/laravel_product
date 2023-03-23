@@ -8,6 +8,7 @@ use Validator;
 use App\Models\Client; //Elquentエロクアント
 use Illuminate\Support\Facades\DB; //QueryBuilderクエリビルダ
 use App\Models\Treatment;
+use App\Models\Schedule;
 
 class ClientController extends Controller
 {

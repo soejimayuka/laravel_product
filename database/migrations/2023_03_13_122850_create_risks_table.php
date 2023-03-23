@@ -1,4 +1,4 @@
-<!-- タイムスケジュールテーブル -->
+<!-- 処置テーブル -->
 
 <?php
 
@@ -15,8 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('times', function (Blueprint $table) {
+        Schema::create('risks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('time_id')->constrained();
+            $table->string('title');
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('times');
+        Schema::dropIfExists('risks');
     }
 };

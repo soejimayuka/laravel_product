@@ -1,4 +1,4 @@
-<!-- 処置テーブル -->
+<!-- 処置とタイムスケジュールの中間テーブル -->
 
 <?php
 
@@ -15,8 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('risks', function (Blueprint $table) {
+        Schema::create('time_treatment', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('time_id')->constrained();
+            $table->foreignId('treatment_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('risks');
+        Schema::dropIfExists('time_treatment');
     }
 };
