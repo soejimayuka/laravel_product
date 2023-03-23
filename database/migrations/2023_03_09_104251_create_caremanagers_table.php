@@ -1,5 +1,3 @@
-<!-- 必要物品とスケジュールの中間テーブル -->
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('goods_schedule', function (Blueprint $table) {
+        Schema::create('caremanagers', function (Blueprint $table) {
             $table->id();
+            $table->string('caremanager_name');
+            $table->string('belong');
+            $table->string('address');
+            $table->string('tel');
+            $table->string('fax');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goods_schedule');
+        Schema::dropIfExists('caremanagers');
     }
 };

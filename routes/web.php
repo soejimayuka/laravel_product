@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('carestation', CarestationController::class);
 
 
-
 Route::get('/', function () {
     return view('user.welcome');
 });

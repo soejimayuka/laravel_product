@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Client; //Elquentエロクアント
 use Illuminate\Support\Facades\DB; //QueryBuilderクエリビルダ
-use App\Models\Treatment;
+// use App\Models\Treatment;
 use App\Models\Schedule;
+use App\Models\Doctor;
+use App\Models\Caremanager;
 
 class ClientController extends Controller
 {
@@ -17,11 +19,6 @@ class ClientController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-
-
-
-
-
     }
 
 
@@ -39,14 +36,9 @@ class ClientController extends Controller
         // var_dump($q_get);
         // dd($e_all, $q_get, $q_first, $c_test);
 
-
-    // dd('testだー表示してーお願いー');
-
-        $clients = Client::select('id','client_name','client_name2', 'desease','age', 'carelevel', 'created_at')->get();
-        return view('admin.client.index',
-        compact('clients'));
-
-
+    $clients = Client::with('doctor','caremanager')->get();
+    return view('admin.client.index',
+    compact('clients'));
     }
 
     /**
@@ -54,10 +46,13 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Doctor $doctor, Caremanager $caremanager)
     {
-         return view('admin.client.create');
+        $doctors  = Doctor::get();
+        $caremanagers  = Caremanager::get();
+        return view('admin.client.create',compact('doctors','caremanagers'));
     }
+
 
 
     public function store(Request $request)
@@ -69,6 +64,9 @@ class ClientController extends Controller
             'desease' => 'required',
             'age' => 'required | max:5',
             'carelevel' => 'required | max:5',
+            'treatment_title' => 'required',
+            'treatment_content' => 'required',
+            'treatment_point' => 'required',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -77,24 +75,24 @@ class ClientController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        // create()は最初から用意されている関数
-        // 戻り値は挿入されたレコードの情報
+
+
         $result = Client::create($request->all());
-        // ルーティング「index」にリクエスト送信（一覧ページに移動）
+
         return redirect()->route('admin.client.index');
     }
 
 
     public function show($id)
     {
-          $client = Client::find($id);
+        $client = Client::find($id);
         return view('admin.client.show', compact('client'));
     }
 
 
     public function edit($id)
     {
-      $client = Client::find($id);
+        $client = Client::find($id);
         return view('admin.client.edit', compact('client'));
     }
 
@@ -109,6 +107,9 @@ class ClientController extends Controller
             'desease' => 'required',
             'age' => 'required | max:5',
             'carelevel' => 'required | max:5',
+            'treatment_title' => 'required',
+            'treatment_content' => 'required',
+            'treatment_point' => 'required',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {

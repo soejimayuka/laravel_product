@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UserSeeder::class,
+            CaremanagerSeeder::class,
+            DoctorSeeder::class,
             ClientSeeder::class,
-            TreatmentSeeder::class,
             ScheduleSeeder::class,
             TimeSeeder::class,
-            RiskSeeder::class,
+
          ]);
 
         // \App\Models\User::factory(10)->create();
