@@ -22,7 +22,6 @@
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">行き先</th>
                 <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">移動の有無</th>
 
-
               </tr>
             </thead>
             <tbody>
@@ -32,6 +31,9 @@
                 <td class="px-4 py-3">{{ $time->time }}</td>
                 <td class="px-4 py-3">{{ $time->content }}</td>
                 <td class="px-4 py-3">{{ $time->is_move }}</td>
+                <!-- 詳細一覧ボタン -->
+                s
+
               </tr>
               @endforeach
             </tbody>

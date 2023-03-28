@@ -17,14 +17,16 @@ class TreatmentController extends Controller
     }
 
 
-    public function index()
+
+    public function index($client_id)
     {
-        // 指定したカラムのみ取得（注意：IDは必ず含める）
-        $treatments = Treatment::with('client:id,client_name')->get();
-        // dd($treatments);
+       $cliemt = Client::findOrFail($client_id);
+       $treatments = $cliemt -> treatments()->get();
+    //    dd($treatments);
+
+
         return view('admin.treatment.index',
         compact('treatments'));
-
     }
 
 
@@ -43,7 +45,7 @@ class TreatmentController extends Controller
         // バリデーション
         $validator = Validator::make($request->all(), [
             'item' => 'required | max:191',
-            'content' => 'required | max:191',
+            'titele' => 'required | max:191',
             'point' => 'required | max:191',
 
         ]);
@@ -59,18 +61,11 @@ class TreatmentController extends Controller
 
         $treatment-> client_id = $client -> id;
         $treatment->item = $request->item;
-        $treatment->content = $request->content;
+        $treatment->titele = $request->titele;
         $treatment->point = $request->point;
         $treatment->save();
 
         return redirect()->route('admin.treatment.index',$client->id);
-
-
-        // // create()は最初から用意されている関数
-        // // 戻り値は挿入されたレコードの情報
-        // $result = Treatment::create($request->all());
-        // // ルーティング「index」にリクエスト送信（一覧ページに移動）
-        // return redirect()->route('admin.treatment.index');
     }
 
 

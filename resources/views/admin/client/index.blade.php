@@ -27,6 +27,8 @@
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">介護度</th>
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
                     <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                    <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -55,7 +57,19 @@
                         <h3 class="">案件登録</h3>
                       </a>
                     </td>
+                    <!-- 処置登録ボタン -->
+                    <td class="px-4 py-3">
+                      <a href="{{ route('admin.treatment.create',$client->id )}}">
+                        <h3 class="">処置登録</h3>
+                      </a>
+                    </td>
+                    <!-- 処置一覧ボタン -->
 
+                    <td class="px-4 py-3">
+                      <a href="{{ route('admin.treatment.index',$client->id)}}">
+                        <h3 class="">処置一覧</h3>
+                      </a>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

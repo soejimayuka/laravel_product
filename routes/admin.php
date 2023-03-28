@@ -14,7 +14,8 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\CaremanagerController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Admin\TimeController;
-// use App\Http\Controllers\Admin\TreatmentController;
+use App\Http\Controllers\Admin\TreatmentController;
+use App\Http\Controllers\Admin\TimeTreatmentController;
 // use App\Http\Controllers\Admin\RiskController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// 修正　ソエジマ
 
 Route::get('/', function () {
     return view('admin.welcome');
@@ -49,27 +49,35 @@ Route::post('client/{client}/schedule', [ScheduleController::class, 'store'])->n
 
 
 // treatment
-// Route::resource('client/{client}/treatment', TreatmentController::class)
-// ->middleware('auth:admin');
+Route::resource('client/{client}/treatment', TreatmentController::class)
+->middleware('auth:admin');
+// Route::prefix('treatment')->
+//     middleware('auth:admin')->group(function(){
+//         Route::get('/', [TreatmentController::class, 'index'])->name('treatment.index');
+// });
+// Route::get('client/{client}/treatment', [TreatmentController::class, 'create'])->name('treatment.create');
+// Route::post('client/{client}/treatment', [TreatmentController::class, 'store'])->name('treatment.store');
+// Route::post('client/{client}/treatment', [TreatmentController::class, 'store'])->name('treatment.show');
+
+
+
+
 
 // time
-Route::prefix('time')->
-    middleware('auth:admin')->group(function(){
-        Route::get('/', [TimeController::class, 'index'])->name('time.index');
-});
-Route::get('schedule/{schedule}/time', [TimeController::class, 'create'])->name('time.create');
-Route::post('schedule/{schedule}/time', [TimeController::class, 'store'])->name('time.store');
+Route::resource('schedule/{schedule}/time', TimeController::class)
+->middleware('auth:admin');
 
-
-
-
-// risk
-// Route::prefix('risk')->
+// Route::prefix('time')->
 //     middleware('auth:admin')->group(function(){
-//         Route::get('/', [RiskController::class, 'index'])->name('risk.index');
+//     Route::get('/', [TimeController::class, 'index'])->name('time.index');
+// //    Route::get('schedule/{schedule}/time', [TimeController::class, 'index'])->name('time.index');
 // });
-// Route::get('time/{time}/risk', [RiskController::class, 'create'])->name('risk.create');
-// Route::post('time/{time}/risk', [RiskController::class, 'store'])->name('risk.store');
+// Route::get('schedule/{schedule}/time', [TimeController::class, 'create'])->name('time.create');
+// Route::post('schedule/{schedule}/time', [TimeController::class, 'store'])->name('time.store');
+
+//TimeTreatment
+Route::resource('schedule/{schedule}/time/{time}/timetreatment', TimeTreatmentController::class)
+->middleware('auth:admin');
 
 
 // user

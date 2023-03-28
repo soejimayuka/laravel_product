@@ -22,6 +22,7 @@ class Treatment extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
     public function times() {
       return $this->belongsToMany(Time::class);
     }
